@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d19">
+<title>PRO CLOUD | Cloud Gaming</title>
+<style>
+:root{color-scheme:dark;--bg:#080d19;--panel:#111b2d;--line:#263954;--muted:#9aabc5;--blue:#347cff;--gold:#f3c64e}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#18345e 0,transparent 42%),var(--bg);color:#f3f6ff;font:15px system-ui,Arial}
+.wrap{max-width:1050px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:950;letter-spacing:2px;font-size:21px}.brand span{color:#65a3ff}.tag{font-size:11px;color:#a9c9ff;border:1px solid #365783;padding:5px 9px;border-radius:20px}
+.hero{margin-top:22px;padding:25px;border:1px solid #29466c;border-radius:20px;background:linear-gradient(120deg,#132747dd,#10182cdd)}h1{font-size:clamp(30px,6vw,48px);line-height:1.02;margin:9px 0}.muted{color:var(--muted)}.hero p{max-width:580px;line-height:1.5}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 15px;background:var(--blue);color:white;font-weight:750;cursor:pointer}.btn.alt{background:#1c2a42;border:1px solid #344966}.btn:disabled{opacity:.4;cursor:not-allowed}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:17px}.stat,.wallet,.game,.notice{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px}.stat strong{display:block;font-size:21px}.coins{color:var(--gold)}h2{font-size:20px;margin:27px 0 12px}.wallet{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.wallet strong{font-size:27px;color:var(--gold)}.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.game{padding:0;overflow:hidden}.art{height:105px;display:grid;place-items:center;font-size:45px;background:linear-gradient(135deg,#1a3459,#293c60)}.gamebody{padding:13px}.game h3{margin:0 0 5px}.game p{font-size:13px;min-height:38px;line-height:1.4}.status{font-size:11px;color:#b9c9e0;background:#23334c;padding:5px 8px;border-radius:20px;display:inline-block}.small{font-size:12px}.timer{font-size:27px;font-weight:850;font-variant-numeric:tabular-nums}.notice{margin-top:16px;line-height:1.5}.notice b{color:#c4dcff}.bar{height:7px;background:#263750;border-radius:9px;overflow:hidden;margin-top:8px}.bar>i{display:block;height:100%;width:0;background:#4b91ff}.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:18px}.modal.show{display:grid}.dialog{max-width:420px;width:100%;background:#111d30;border:1px solid #395477;border-radius:18px;padding:20px}.dialog h3{margin-top:0}footer{padding:25px 0;color:#7f90aa;font-size:12px;text-align:center}
+@media(max-width:520px){.wrap{padding:14px}.hero{padding:19px}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="top"><div class="brand"><span>PRO</span> CLOUD</div><div class="tag">BETA · DEMOSTRACIÓN</div></header>
+<section class="hero"><div class="tag">CLOUD GAMING HUB</div><h1>Juega desde<br>cualquier pantalla.</h1><p class="muted">Una plataforma de juegos en la nube pensada para teléfono y PC. Estamos preparando las primeras conexiones de streaming.</p><div class="row"><button class="btn" onclick="document.querySelector('#catalogo').scrollIntoView({behavior:'smooth'})">Explorar juegos ↓</button><span class="small muted">Android · PC · Tablet</span></div>
+<div class="stats"><div class="stat"><span class="muted small">Recompensa por anuncio</span><strong class="coins">+10 monedas</strong></div><div class="stat"><span class="muted small">Valor de cada moneda</span><strong>1 minuto</strong></div><div class="stat"><span class="muted small">6 anuncios</span><strong>60 minutos</strong></div></div></section>
+<h2>Tu billetera</h2><section class="wallet"><div><div class="muted small">Saldo de demostración</div><strong><span id="coins">0</span> 🪙</strong><div class="muted small" id="minutes">0 minutos disponibles</div></div><div class="row"><button class="btn" id="ad">Ver anuncio de prueba (+10)</button><button class="btn alt" id="reset">Reiniciar demo</button></div></section>
+<div class="notice small"><b>Nota:</b> el botón de anuncio es una simulación para probar el diseño. No muestra publicidad real ni genera ingresos. Las monedas de esta demo se guardan solo en este navegador.</div>
+<h2 id="catalogo">Primeros juegos</h2><p class="muted small">Empezaremos con títulos relativamente ligeros. Estos son candidatos para integrar cuando exista un servidor compatible; todavía no se pueden transmitir desde esta demo.</p>
+<section class="games">
+<article class="game"><div class="art">🏎️</div><div class="gamebody"><h3>SuperTuxKart</h3><span class="status">Candidato · Carreras</span><p class="muted">Carreras arcade coloridas, ideal para empezar con un juego ligero.</p><button class="btn alt launch" data-name="SuperTuxKart">Ver detalles</button></div></article>
+<article class="game"><div class="art">🚀</div><div class="gamebody"><h3>Xonotic</h3><span class="status">Candidato · FPS</span><p class="muted">Shooter rápido de estilo arena y código abierto.</p><button class="btn alt launch" data-name="Xonotic">Ver detalles</button></div></article>
+<article class="game"><div class="art">🌍</div><div class="gamebody"><h3>0 A.D.</h3><span class="status">Candidato · Estrategia</span><p class="muted">Estrategia histórica con construcción y gestión de ejércitos.</p><button class="btn alt launch" data-name="0 A.D.">Ver detalles</button></div></article>
+<article class="game"><div class="art">🚚</div><div class="gamebody"><h3>OpenTTD</h3><span class="status">Candidato · Simulación</span><p class="muted">Construye y administra redes de transporte.</p><button class="btn alt launch" data-name="OpenTTD">Ver detalles</button></div></article>
+</section>
+<h2>Sesión de juego</h2><section class="wallet"><div><div class="muted small">Tiempo restante</div><div class="timer" id="timer">00:00</div><div class="muted small" id="sessionState">No hay ninguna sesión activa.</div></div><div class="row"><button class="btn" id="start" disabled>Iniciar sesión demo</button><button class="btn alt" id="stop" disabled>Terminar</button></div></section>
+<div class="bar"><i id="progress"></i></div>
+<div class="notice small"><b>Transparencia:</b> esta versión es una maqueta funcional de la billetera y el temporizador. El streaming real requiere servidores con GPU, software de captura/transmisión y una conexión WebRTC; no sería honesto fingir que los juegos ya se ejecutan aquí.</div>
+<footer>PRO CLOUD · Prototipo inicial · Hecho para probar en móvil y PC</footer>
+</main>
+<div class="modal" id="modal"><div class="dialog"><h3 id="modalTitle">Detalles del juego</h3><p class="muted" id="modalText"></p><button class="btn" id="dismiss">Entendido</button></div></div>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);let coins=Number(localStorage.getItem('pc_coins')||0),remaining=0,interval=null;
+function save(){localStorage.setItem('pc_coins',coins);$('coins').textContent=coins;$('minutes').textContent=coins+' minutos disponibles';$('start').disabled=coins<1||!!interval}
+function renderTimer(){let m=Math.floor(remaining/60),s=remaining%60;$('timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');$('progress').style.width=(remaining%60/60*100)+'%'}
+function end(){clearInterval(interval);interval=null;$('sessionState').textContent='Sesión finalizada.';$('stop').disabled=true;save()}
+$('ad').onclick=()=>{coins+=10;save();$('ad').textContent='¡+10 monedas añadidas!';setTimeout(()=>$('ad').textContent='Ver anuncio de prueba (+10)',1400)};
+$('reset').onclick=()=>{if(interval)end();coins=0;remaining=0;renderTimer();$('sessionState').textContent='Demo reiniciada.';save()};
+$('start').onclick=()=>{if(interval||coins<1)return;remaining=coins*60;coins=0;save();$('sessionState').textContent='Sesión de temporizador demo activa. El streaming aún no está conectado.';$('stop').disabled=false;renderTimer();interval=setInterval(()=>{remaining--;renderTimer();if(remaining<=0)end()},1000);save()};
+$('stop').onclick=()=>{if(interval){end();remaining=0;renderTimer();$('sessionState').textContent='Sesión terminada. El tiempo no utilizado no se devuelve en esta demo.'}};
+document.querySelectorAll('.launch').forEach(b=>b.onclick=()=>{$('modalTitle').textContent=b.dataset.name;$('modalText').textContent='Este juego está en la lista inicial de candidatos. Todavía no hay un servidor de streaming conectado, así que no se puede iniciar desde PRO CLOUD.';$('modal').classList.add('show')});
+$('dismiss').onclick=()=>$('modal').classList.remove('show');$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('show')};
+save();renderTimer();
+})();
+</script></body></html>
