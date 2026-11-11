@@ -1,48 +1,305 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080d19">
 <title>PRO CLOUD | Cloud Gaming</title>
 <style>
-:root{color-scheme:dark;--bg:#080d19;--panel:#111b2d;--line:#263954;--muted:#9aabc5;--blue:#347cff;--gold:#f3c64e}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#18345e 0,transparent 42%),var(--bg);color:#f3f6ff;font:15px system-ui,Arial}
-.wrap{max-width:1050px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:950;letter-spacing:2px;font-size:21px}.brand span{color:#65a3ff}.tag{font-size:11px;color:#a9c9ff;border:1px solid #365783;padding:5px 9px;border-radius:20px}
-.hero{margin-top:22px;padding:25px;border:1px solid #29466c;border-radius:20px;background:linear-gradient(120deg,#132747dd,#10182cdd)}h1{font-size:clamp(30px,6vw,48px);line-height:1.02;margin:9px 0}.muted{color:var(--muted)}.hero p{max-width:580px;line-height:1.5}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 15px;background:var(--blue);color:white;font-weight:750;cursor:pointer}.btn.alt{background:#1c2a42;border:1px solid #344966}.btn:disabled{opacity:.4;cursor:not-allowed}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:17px}.stat,.wallet,.game,.notice{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px}.stat strong{display:block;font-size:21px}.coins{color:var(--gold)}h2{font-size:20px;margin:27px 0 12px}.wallet{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.wallet strong{font-size:27px;color:var(--gold)}.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.game{padding:0;overflow:hidden}.art{height:105px;display:grid;place-items:center;font-size:45px;background:linear-gradient(135deg,#1a3459,#293c60)}.gamebody{padding:13px}.game h3{margin:0 0 5px}.game p{font-size:13px;min-height:38px;line-height:1.4}.status{font-size:11px;color:#b9c9e0;background:#23334c;padding:5px 8px;border-radius:20px;display:inline-block}.small{font-size:12px}.timer{font-size:27px;font-weight:850;font-variant-numeric:tabular-nums}.notice{margin-top:16px;line-height:1.5}.notice b{color:#c4dcff}.bar{height:7px;background:#263750;border-radius:9px;overflow:hidden;margin-top:8px}.bar>i{display:block;height:100%;width:0;background:#4b91ff}.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:18px}.modal.show{display:grid}.dialog{max-width:420px;width:100%;background:#111d30;border:1px solid #395477;border-radius:18px;padding:20px}.dialog h3{margin-top:0}footer{padding:25px 0;color:#7f90aa;font-size:12px;text-align:center}
-@media(max-width:520px){.wrap{padding:14px}.hero{padding:19px}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}}
+:root{
+  color-scheme:dark;--bg:#080d19;--panel:#111b2d;--panel2:#17243a;
+  --line:#263954;--muted:#9aabc5;--blue:#347cff;--gold:#f3c64e;
+  --text:#f3f6ff;--green:#55d6a1
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 80% -10%,#18345e 0,transparent 42%),var(--bg);color:var(--text);font:15px system-ui,Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:1120px;margin:auto;padding:20px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:950;letter-spacing:2px;font-size:22px}
+.brand span{color:#65a3ff}
+.tag{font-size:11px;color:#a9c9ff;border:1px solid #365783;padding:5px 9px;border-radius:20px;white-space:nowrap}
+.hero{margin-top:22px;padding:clamp(20px,4vw,32px);border:1px solid #29466c;border-radius:22px;background:linear-gradient(120deg,#132747ee,#10182cee);box-shadow:0 18px 55px #0003}
+.eyebrow{color:#8dbbff;font-size:11px;font-weight:800;letter-spacing:1.8px}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.02;margin:10px 0}
+.muted{color:var(--muted)}
+.hero p{max-width:610px;line-height:1.55}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{border:0;border-radius:11px;padding:11px 15px;background:var(--blue);color:white;font-weight:750;cursor:pointer;transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.btn.alt{background:#1c2a42;border:1px solid #344966}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.stat,.wallet,.notice{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px}
+.stat strong{display:block;font-size:21px;margin-top:3px}
+.coins{color:var(--gold)}
+h2{font-size:20px;margin:28px 0 12px}
+.wallet{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.wallet strong{font-size:27px;color:var(--gold)}
+.small{font-size:12px}
+.notice{margin-top:15px;line-height:1.55}
+.notice b{color:#c4dcff}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}
+.search{width:min(100%,310px);background:#101a2b;border:1px solid #344966;color:white;border-radius:11px;padding:12px 14px;outline:none}
+.search:focus{border-color:#5795ff;box-shadow:0 0 0 3px #347cff25}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.filter{border:1px solid #30435f;background:#111d30;color:#bdcbe0;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700}
+.filter.active{background:#23477b;border-color:#5795ff;color:white}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}
+.game{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0;transition:transform .18s,border-color .18s}
+.game:hover{transform:translateY(-3px);border-color:#456b9e}
+.art{height:142px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.art:before,.art:after{content:"";position:absolute;border-radius:50%;filter:blur(1px);opacity:.5}
+.art:before{width:180px;height:180px;right:-35px;top:-90px;background:#ffffff22}
+.art:after{width:130px;height:130px;left:-45px;bottom:-85px;background:#ffffff1c}
+.art-icon{font-size:62px;filter:drop-shadow(0 8px 10px #0008);z-index:1}
+.art-label{position:absolute;left:13px;bottom:12px;font-size:10px;letter-spacing:1.5px;font-weight:900;color:#ffffffd9;z-index:2}
+.racing{background:linear-gradient(135deg,#164d70,#1c9a9a 55%,#b2c64c)}
+.fps{background:linear-gradient(135deg,#202a48,#455b85 55%,#9b633d)}
+.strategy{background:linear-gradient(135deg,#5b382c,#b47c42 55%,#d2ba78)}
+.sim{background:linear-gradient(135deg,#183d4a,#277a78 55%,#8dbb8d)}
+.sandbox{background:linear-gradient(135deg,#1c4939,#388b60 55%,#b4bd61)}
+.action{background:linear-gradient(135deg,#43294f,#8a4774 55%,#d18b5b)}
+.gamebody{padding:14px}
+.game h3{margin:0 0 7px;font-size:17px}
+.game p{font-size:13px;min-height:54px;line-height:1.45;margin:9px 0 12px}
+.status{font-size:10px;color:#c7d7ee;background:#23334c;padding:5px 8px;border-radius:20px;display:inline-block}
+.game-meta{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+.game .btn{width:100%}
+.empty{display:none;padding:25px;text-align:center;border:1px dashed #39506f;border-radius:15px;color:var(--muted)}
+.timer{font-size:29px;font-weight:850;font-variant-numeric:tabular-nums}
+.bar{height:7px;background:#263750;border-radius:9px;overflow:hidden;margin-top:10px}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#347cff,#6bc4ff);transition:width .2s}
+.modal{position:fixed;inset:0;background:#000c;display:none;place-items:center;padding:18px;z-index:10}
+.modal.show{display:grid}
+.dialog{max-width:440px;width:100%;background:#111d30;border:1px solid #395477;border-radius:18px;padding:21px;box-shadow:0 20px 80px #0009}
+.dialog h3{margin:0 0 9px}
+.dialog .modal-art{height:100px;border-radius:12px;display:grid;place-items:center;font-size:48px;margin-bottom:15px}
+.dialog p{line-height:1.5}
+.dialog-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+footer{padding:27px 0;color:#7f90aa;font-size:12px;text-align:center}
+@media(max-width:560px){
+ .wrap{padding:14px}.hero{padding:20px}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:span 2}
+ .section-head{align-items:stretch}.search{width:100%}.games{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .art{height:112px}.art-icon{font-size:48px}.gamebody{padding:11px}.game h3{font-size:15px}.game p{font-size:12px;min-height:68px}
+}
+@media(max-width:360px){.games{grid-template-columns:1fr}.art{height:130px}}
 </style>
 </head>
-<body><main class="wrap">
-<header class="top"><div class="brand"><span>PRO</span> CLOUD</div><div class="tag">BETA · DEMOSTRACIÓN</div></header>
-<section class="hero"><div class="tag">CLOUD GAMING HUB</div><h1>Juega desde<br>cualquier pantalla.</h1><p class="muted">Una plataforma de juegos en la nube pensada para teléfono y PC. Estamos preparando las primeras conexiones de streaming.</p><div class="row"><button class="btn" onclick="document.querySelector('#catalogo').scrollIntoView({behavior:'smooth'})">Explorar juegos ↓</button><span class="small muted">Android · PC · Tablet</span></div>
-<div class="stats"><div class="stat"><span class="muted small">Recompensa por anuncio</span><strong class="coins">+10 monedas</strong></div><div class="stat"><span class="muted small">Valor de cada moneda</span><strong>1 minuto</strong></div><div class="stat"><span class="muted small">6 anuncios</span><strong>60 minutos</strong></div></div></section>
-<h2>Tu billetera</h2><section class="wallet"><div><div class="muted small">Saldo de demostración</div><strong><span id="coins">0</span> 🪙</strong><div class="muted small" id="minutes">0 minutos disponibles</div></div><div class="row"><button class="btn" id="ad">Ver anuncio de prueba (+10)</button><button class="btn alt" id="reset">Reiniciar demo</button></div></section>
-<div class="notice small"><b>Nota:</b> el botón de anuncio es una simulación para probar el diseño. No muestra publicidad real ni genera ingresos. Las monedas de esta demo se guardan solo en este navegador.</div>
-<h2 id="catalogo">Primeros juegos</h2><p class="muted small">Empezaremos con títulos relativamente ligeros. Estos son candidatos para integrar cuando exista un servidor compatible; todavía no se pueden transmitir desde esta demo.</p>
-<section class="games">
-<article class="game"><div class="art">🏎️</div><div class="gamebody"><h3>SuperTuxKart</h3><span class="status">Candidato · Carreras</span><p class="muted">Carreras arcade coloridas, ideal para empezar con un juego ligero.</p><button class="btn alt launch" data-name="SuperTuxKart">Ver detalles</button></div></article>
-<article class="game"><div class="art">🚀</div><div class="gamebody"><h3>Xonotic</h3><span class="status">Candidato · FPS</span><p class="muted">Shooter rápido de estilo arena y código abierto.</p><button class="btn alt launch" data-name="Xonotic">Ver detalles</button></div></article>
-<article class="game"><div class="art">🌍</div><div class="gamebody"><h3>0 A.D.</h3><span class="status">Candidato · Estrategia</span><p class="muted">Estrategia histórica con construcción y gestión de ejércitos.</p><button class="btn alt launch" data-name="0 A.D.">Ver detalles</button></div></article>
-<article class="game"><div class="art">🚚</div><div class="gamebody"><h3>OpenTTD</h3><span class="status">Candidato · Simulación</span><p class="muted">Construye y administra redes de transporte.</p><button class="btn alt launch" data-name="OpenTTD">Ver detalles</button></div></article>
+<body>
+<main class="wrap">
+<header class="top">
+  <div class="brand"><span>PRO</span> CLOUD</div>
+  <div class="tag">BETA · DEMOSTRACIÓN</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">CLOUD GAMING HUB</div>
+  <h1>Tu próxima partida<br>empieza aquí.</h1>
+  <p class="muted">Explora juegos gratuitos y de código abierto desde una sola plataforma. PRO CLOUD está preparando sus primeras conexiones de streaming.</p>
+  <div class="row">
+    <button class="btn" onclick="document.querySelector('#catalogo').scrollIntoView({behavior:'smooth'})">Explorar catálogo ↓</button>
+    <span class="small muted">Android · PC · Tablet</span>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="muted small">Recompensa por anuncio</span><strong class="coins">+10 monedas</strong></div>
+    <div class="stat"><span class="muted small">Valor de cada moneda</span><strong>1 minuto</strong></div>
+    <div class="stat"><span class="muted small">6 anuncios de prueba</span><strong>60 minutos</strong></div>
+  </div>
 </section>
-<h2>Sesión de juego</h2><section class="wallet"><div><div class="muted small">Tiempo restante</div><div class="timer" id="timer">00:00</div><div class="muted small" id="sessionState">No hay ninguna sesión activa.</div></div><div class="row"><button class="btn" id="start" disabled>Iniciar sesión demo</button><button class="btn alt" id="stop" disabled>Terminar</button></div></section>
+
+<h2>Tu billetera</h2>
+<section class="wallet">
+  <div>
+    <div class="muted small">Saldo de demostración</div>
+    <strong><span id="coins">0</span> 🪙</strong>
+    <div class="muted small" id="minutes">0 minutos disponibles</div>
+  </div>
+  <div class="row">
+    <button class="btn" id="ad">Ver anuncio de prueba (+10)</button>
+    <button class="btn alt" id="reset">Reiniciar demo</button>
+  </div>
+</section>
+<div class="notice small"><b>Nota:</b> el botón de anuncio es una simulación. No muestra publicidad real ni genera ingresos. Las monedas se guardan únicamente en este navegador y no tienen valor real.</div>
+
+<div class="section-head">
+  <div>
+    <h2 id="catalogo">Catálogo de juegos</h2>
+    <p class="muted small">Filtra por categoría o busca un título.</p>
+  </div>
+  <input class="search" id="search" type="search" placeholder="Buscar juegos..." aria-label="Buscar juegos">
+</div>
+<nav class="filters" aria-label="Categorías">
+  <button class="filter active" data-filter="todos">Todos</button>
+  <button class="filter" data-filter="carreras">Carreras</button>
+  <button class="filter" data-filter="fps">FPS</button>
+  <button class="filter" data-filter="estrategia">Estrategia</button>
+  <button class="filter" data-filter="simulacion">Simulación</button>
+  <button class="filter" data-filter="sandbox">Sandbox</button>
+</nav>
+
+<section class="games" id="games">
+  <article class="game" data-category="carreras" data-search="supertuxkart carreras kart arcade">
+    <div class="art racing"><span class="art-icon">🏎️</span><span class="art-label">RACING</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">Carreras</span></div><h3>SuperTuxKart</h3><p class="muted">Carreras arcade con pistas coloridas, karts y partidas llenas de acción.</p><button class="btn alt launch" data-name="SuperTuxKart" data-category="Carreras" data-icon="🏎️" data-description="Un juego de carreras arcade de código abierto. Es uno de los candidatos para una primera prueba de PRO CLOUD." data-url="https://supertuxkart.net/">Ver detalles</button></div>
+  </article>
+  <article class="game" data-category="fps" data-search="xonotic shooter disparos fps arena">
+    <div class="art fps"><span class="art-icon">🎯</span><span class="art-label">ARENA FPS</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">FPS</span></div><h3>Xonotic</h3><p class="muted">Shooter rápido de estilo arena, con movimiento veloz y combates competitivos.</p><button class="btn alt launch" data-name="Xonotic" data-category="FPS" data-icon="🎯" data-description="Un FPS de arena gratuito y de código abierto. Está en evaluación para una futura integración." data-url="https://xonotic.org/">Ver detalles</button></div>
+  </article>
+  <article class="game" data-category="estrategia" data-search="0 a.d. estrategia historia imperios">
+    <div class="art strategy"><span class="art-icon">🏛️</span><span class="art-label">STRATEGY</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">Estrategia</span></div><h3>0 A.D.</h3><p class="muted">Estrategia histórica en tiempo real, con civilizaciones y construcción.</p><button class="btn alt launch" data-name="0 A.D." data-category="Estrategia" data-icon="🏛️" data-description="Un juego de estrategia histórica en tiempo real y de código abierto." data-url="https://play0ad.com/">Ver detalles</button></div>
+  </article>
+  <article class="game" data-category="simulacion" data-search="openttd transporte trenes simulacion">
+    <div class="art sim"><span class="art-icon">🚆</span><span class="art-label">SIMULATION</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">Simulación</span></div><h3>OpenTTD</h3><p class="muted">Construye y administra redes de transporte, trenes, rutas y ciudades.</p><button class="btn alt launch" data-name="OpenTTD" data-category="Simulación" data-icon="🚆" data-description="Un simulador de gestión de transporte de código abierto." data-url="https://www.openttd.org/">Ver detalles</button></div>
+  </article>
+  <article class="game" data-category="sandbox" data-search="luanti minetest bloques construccion sandbox">
+    <div class="art sandbox"><span class="art-icon">🧱</span><span class="art-label">SANDBOX</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">Sandbox</span></div><h3>Luanti</h3><p class="muted">Un mundo abierto de bloques, creación y exploración con mods.</p><button class="btn alt launch" data-name="Luanti" data-category="Sandbox" data-icon="🧱" data-description="Motor de juegos voxel gratuito, conocido anteriormente como Minetest. Permite explorar mundos y usar mods." data-url="https://www.luanti.org/">Ver detalles</button></div>
+  </article>
+  <article class="game" data-category="estrategia" data-search="warzone 2100 estrategia ciencia ficcion">
+    <div class="art strategy"><span class="art-icon">🤖</span><span class="art-label">SCI-FI RTS</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">Estrategia</span></div><h3>Warzone 2100</h3><p class="muted">Estrategia de ciencia ficción con unidades, tecnología y campañas.</p><button class="btn alt launch" data-name="Warzone 2100" data-category="Estrategia" data-icon="🤖" data-description="Un juego de estrategia en tiempo real de ciencia ficción, gratuito y de código abierto." data-url="https://wz2100.net/">Ver detalles</button></div>
+  </article>
+  <article class="game" data-category="accion" data-search="hedgewars accion estrategia gusanos">
+    <div class="art action"><span class="art-icon">💥</span><span class="art-label">ACTION</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">Acción</span></div><h3>Hedgewars</h3><p class="muted">Combates por turnos con personajes divertidos y escenarios destructibles.</p><button class="btn alt launch" data-name="Hedgewars" data-category="Acción" data-icon="💥" data-description="Un juego de estrategia por turnos de código abierto, pensado para partidas casuales." data-url="https://www.hedgewars.org/">Ver detalles</button></div>
+  </article>
+  <article class="game" data-category="fps" data-search="teeworlds shooter plataformas multijugador">
+    <div class="art fps"><span class="art-icon">⚡</span><span class="art-label">2D ACTION</span></div>
+    <div class="gamebody"><div class="game-meta"><span class="status">Candidato</span><span class="small muted">Acción</span></div><h3>Teeworlds</h3><p class="muted">Acción multijugador 2D rápida, con mapas y modos diferentes.</p><button class="btn alt launch" data-name="Teeworlds" data-category="FPS" data-icon="⚡" data-description="Un juego multijugador 2D gratuito y de código abierto. Su integración dependerá de tener un servidor compatible." data-url="https://www.teeworlds.com/">Ver detalles</button></div>
+  </article>
+</section>
+<div class="empty" id="empty">No encontramos juegos con esa búsqueda. Prueba otro nombre o categoría.</div>
+
+<h2>Sesión de juego</h2>
+<section class="wallet">
+  <div>
+    <div class="muted small">Tiempo restante</div>
+    <div class="timer" id="timer">00:00</div>
+    <div class="muted small" id="sessionState">No hay ninguna sesión activa.</div>
+  </div>
+  <div class="row">
+    <button class="btn" id="start" disabled>Iniciar sesión demo</button>
+    <button class="btn alt" id="stop" disabled>Terminar</button>
+  </div>
+</section>
 <div class="bar"><i id="progress"></i></div>
-<div class="notice small"><b>Transparencia:</b> esta versión es una maqueta funcional de la billetera y el temporizador. El streaming real requiere servidores con GPU, software de captura/transmisión y una conexión WebRTC; no sería honesto fingir que los juegos ya se ejecutan aquí.</div>
-<footer>PRO CLOUD · Prototipo inicial · Hecho para probar en móvil y PC</footer>
+<div class="notice small"><b>Transparencia:</b> esta versión incluye catálogo, filtros, billetera y temporizador de demostración. Los botones de los juegos muestran información y enlazan a sus páginas oficiales; todavía no ejecutan ni transmiten los juegos. El streaming real necesita servidores con GPU, captura de vídeo y conexión de baja latencia.</div>
+<footer>PRO CLOUD · Prototipo 0.2 · Hecho para probar en móvil y PC</footer>
 </main>
-<div class="modal" id="modal"><div class="dialog"><h3 id="modalTitle">Detalles del juego</h3><p class="muted" id="modalText"></p><button class="btn" id="dismiss">Entendido</button></div></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="dialog">
+    <div class="modal-art" id="modalArt">🎮</div>
+    <h3 id="modalTitle">Detalles del juego</h3>
+    <div class="status" id="modalCategory">Candidato</div>
+    <p class="muted" id="modalText"></p>
+    <p class="small muted">Estado: candidato para una futura conexión de streaming.</p>
+    <div class="dialog-actions">
+      <a class="btn" id="officialLink" href="#" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Página oficial ↗</a>
+      <button class="btn alt" id="dismiss">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (()=>{
-const $=id=>document.getElementById(id);let coins=Number(localStorage.getItem('pc_coins')||0),remaining=0,interval=null;
-function save(){localStorage.setItem('pc_coins',coins);$('coins').textContent=coins;$('minutes').textContent=coins+' minutos disponibles';$('start').disabled=coins<1||!!interval}
-function renderTimer(){let m=Math.floor(remaining/60),s=remaining%60;$('timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');$('progress').style.width=(remaining%60/60*100)+'%'}
-function end(){clearInterval(interval);interval=null;$('sessionState').textContent='Sesión finalizada.';$('stop').disabled=true;save()}
-$('ad').onclick=()=>{coins+=10;save();$('ad').textContent='¡+10 monedas añadidas!';setTimeout(()=>$('ad').textContent='Ver anuncio de prueba (+10)',1400)};
-$('reset').onclick=()=>{if(interval)end();coins=0;remaining=0;renderTimer();$('sessionState').textContent='Demo reiniciada.';save()};
-$('start').onclick=()=>{if(interval||coins<1)return;remaining=coins*60;coins=0;save();$('sessionState').textContent='Sesión de temporizador demo activa. El streaming aún no está conectado.';$('stop').disabled=false;renderTimer();interval=setInterval(()=>{remaining--;renderTimer();if(remaining<=0)end()},1000);save()};
-$('stop').onclick=()=>{if(interval){end();remaining=0;renderTimer();$('sessionState').textContent='Sesión terminada. El tiempo no utilizado no se devuelve en esta demo.'}};
-document.querySelectorAll('.launch').forEach(b=>b.onclick=()=>{$('modalTitle').textContent=b.dataset.name;$('modalText').textContent='Este juego está en la lista inicial de candidatos. Todavía no hay un servidor de streaming conectado, así que no se puede iniciar desde PRO CLOUD.';$('modal').classList.add('show')});
-$('dismiss').onclick=()=>$('modal').classList.remove('show');$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('show')};
-save();renderTimer();
+const $=id=>document.getElementById(id);
+let coins=0;
+try{coins=Number(localStorage.getItem('pc_coins')||0);if(!Number.isFinite(coins)||coins<0)coins=0}catch(e){coins=0}
+let remaining=0,interval=null,activeFilter='todos';
+
+function save(){
+  try{localStorage.setItem('pc_coins',String(coins))}catch(e){}
+  $('coins').textContent=coins;
+  $('minutes').textContent=coins+' minutos disponibles';
+  $('start').disabled=coins<1||!!interval;
+}
+function renderTimer(){
+  const m=Math.floor(remaining/60),s=remaining%60;
+  $('timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  $('progress').style.width=(remaining>0?Math.min(100,(remaining/Math.max(1,initialSeconds))*100):0)+'%';
+}
+let initialSeconds=0;
+function endSession(message){
+  if(interval){clearInterval(interval);interval=null}
+  $('sessionState').textContent=message||'Sesión finalizada.';
+  $('stop').disabled=true;
+  save();
+}
+$('ad').onclick=()=>{
+  coins+=10;save();
+  $('ad').textContent='¡+10 monedas añadidas!';
+  setTimeout(()=>$('ad').textContent='Ver anuncio de prueba (+10)',1400);
+};
+$('reset').onclick=()=>{
+  if(interval)endSession('Demo reiniciada.');
+  coins=0;remaining=0;initialSeconds=0;renderTimer();
+  $('sessionState').textContent='Demo reiniciada.';
+  save();
+};
+$('start').onclick=()=>{
+  if(interval||coins<1)return;
+  remaining=coins*60;initialSeconds=remaining;coins=0;save();
+  $('sessionState').textContent='Temporizador demo activo. El streaming aún no está conectado.';
+  $('stop').disabled=false;renderTimer();
+  interval=setInterval(()=>{
+    remaining=Math.max(0,remaining-1);renderTimer();
+    if(remaining<=0)endSession('Tiempo agotado. La sesión demo terminó.');
+  },1000);
+  save();
+};
+$('stop').onclick=()=>{
+  if(!interval)return;
+  endSession('Sesión terminada. El tiempo no utilizado no se devuelve en esta demo.');
+  remaining=0;renderTimer();
+};
+
+function filterGames(){
+  const query=$('search').value.trim().toLowerCase();
+  let visible=0;
+  document.querySelectorAll('.game').forEach(card=>{
+    const category=card.dataset.category;
+    const text=(card.dataset.search+' '+card.innerText).toLowerCase();
+    const matchesCategory=activeFilter==='todos'||category===activeFilter;
+    const matchesText=!query||text.includes(query);
+    const show=matchesCategory&&matchesText;
+    card.style.display=show?'':'none';
+    if(show)visible++;
+  });
+  $('empty').style.display=visible?'none':'block';
+}
+$('search').addEventListener('input',filterGames);
+document.querySelectorAll('.filter').forEach(button=>{
+  button.addEventListener('click',()=>{
+    activeFilter=button.dataset.filter;
+    document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b===button));
+    filterGames();
+  });
+});
+
+document.querySelectorAll('.launch').forEach(button=>{
+  button.addEventListener('click',()=>{
+    $('modalTitle').textContent=button.dataset.name;
+    $('modalText').textContent=button.dataset.description;
+    $('modalCategory').textContent=button.dataset.category;
+    $('modalArt').textContent=button.dataset.icon;
+    $('officialLink').href=button.dataset.url;
+    $('modal').classList.add('show');
+  });
+});
+function closeModal(){$('modal').classList.remove('show')}
+$('dismiss').onclick=closeModal;
+$('modal').onclick=e=>{if(e.target===$('modal'))closeModal()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+save();renderTimer();filterGames();
 })();
-</script></body></html>
+</script>
+</body>
+</html>
